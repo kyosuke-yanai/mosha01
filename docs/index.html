@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="コーディング練習サイトです">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+    <title>模写コーディング</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="header">
+            <h1 class="header__ttl">Travel Blog</h1>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="">NEWS</a></li>
+                    <li><a href="">COLUMN</a></li>
+                    <li><a href="">SERIES</a></li>
+                    <li><a href="">Q&A</a></li>
+                    <li><a href="">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="contents">
+            <section class="contents__pickup">
+                <article class="pickup__article" v-for="pickup__article__data in pickup__article__list">
+                    <img :src="pickup__article__data.img" alt="">
+                    <h2 class="article__txt">{{ pickup__article__data.txt }}</h2>
+                    <div class="article__readmore">
+                        <a href="">READMORE</a>
+                    </div>
+                </article>
+            </section>
+
+            <section class="contents__main">
+                <main class="main__main">
+                    <article class="main__article" v-for="main__article__data in main__article__list">
+                        <h2 class="article__ttl">{{ main__article__data.ttl }}</h2>
+                        <div class="article__itembox--created-category">
+                            <time class="article__created">{{ main__article__data.created }}</time>
+                            <p class="article__category">{{ main__article__data.cat }}</p>
+                        </div>
+                        <img :src="main__article__data.img" alt="">
+                        <h3 class="article__txt">{{ main__article__data.txt }}</h3>
+                        <div class="article__readmore">
+                            <a href="">READMORE</a>
+                        </div>
+                    </article>
+                </main>
+                <aside class="main__aside">
+                    <div class="aside__about">
+                        <img src="images/pickup1.jpg" alt="">
+                        <h2 class="about__myname">My Name</h2>
+                        <h3 class="about__txt">テキストテキストテキストテキストテキストテキスト</h3>
+                    </div>
+                    <div class="aside__ranking">
+                        <h2 class="ranking__ttl">Ranking</h2>
+                        <article class="ranking__article" v-for="ranking__article__data in ranking__article__list">
+                            <img :src="ranking__article__data.img" alt="">
+                            <h3 class="article__ttl">{{ ranking__article__data.txt }}</h3>
+                        </article>
+                    </div>
+                    <div class="aside__archive">
+                        <h2 class="archive__ttl">Archive</h2>
+                        <ul>
+                            <li v-for="_ in 15">XXXX年XX月</li>
+                        </ul>
+                    </div>
+                </aside>
+            </section>
+        </div>
+        <footer class="footer">
+            <div class="footer__contents">
+                <div class="footer__about">
+                    <h2 class="about__ttl">About</h2>
+                    <h3 class="about__txt">テキストテキストテキストテキストテキストテキストテキストテキストテキスト</h3>
+                    <ul class="about__menu">
+                        <li><a href="">プロフィール詳細</a></li>
+                        <li><a href="">お仕事の依頼</a></li>
+                        <li><a href="">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <nav class="footer__menu">
+                    <h2 class="menu__ttl">Menu</h2>
+                    <nav class="menu__nav">
+                        <ul>
+                            <li><a href="">NEWS</a></li>
+                            <li><a href="">COLUMN</a></li>
+                            <li><a href="">SERIES</a></li>
+                            <li><a href="">Q&A</a></li>
+                        </ul>
+                    </nav>
+                </nav>
+                <div class="footer__twitter">
+                    <h2 class="twitter__ttl">Twitter</h2>
+                    <a class="twitter-timeline" data-height="500" href="https://twitter.com/milkyholmes?ref_src=twsrc%5Etfw">Tweets by milkyholmes</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+            <p class="footer__copyright">© Travel & Blog</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                pickup__article__list: [{
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, {
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, {
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, ],
+
+                main__article__list: [{
+                    ttl: "タイトルです",
+                    created: "2020/01/03",
+                    cat: "カテゴリー1",
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, {
+                    ttl: "タイトルです",
+                    created: "2020/01/02",
+                    cat: "カテゴリー1",
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, {
+                    ttl: "タイトルです",
+                    created: "2020/01/01",
+                    cat: "カテゴリー1",
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, ],
+
+                ranking__article__list: [{
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, {
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, {
+                    img: "images/pickup1.jpg",
+                    txt: "テキストテキストテキストテキストテキストテキスト"
+                }, ],
+            },
+        })
+    </script>
+
+</body>
+
+</html>

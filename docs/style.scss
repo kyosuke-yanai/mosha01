@@ -1,0 +1,334 @@
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: #000000;
+}
+
+@mixin base__wrapper {
+    margin: 0 auto;
+    @media screen and (min-width: 766px) {
+        max-width: 85%;
+    }
+    @media screen and (max-width:765px) {
+        max-width: 95%;
+    }
+}
+
+@mixin article__readmore {
+    display: flex;
+    justify-content: center;
+    a {
+        position: relative;
+        font-size: 14px;
+        color: #333;
+        padding-bottom: 1px;
+    }
+    a:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 1.5px;
+        background: #333;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+        transition: all .2s;
+    }
+    a:hover::after {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+}
+
+.header {
+    position: fixed;
+    z-index: 10;
+    background-color: #ffffff;
+    .header__ttl {
+        @include base__wrapper();
+        font-size: 30px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .header__nav {
+        background-color: #333;
+        //画面幅いっぱいにはみ出して配置する 参考「https://ponsyon.com/archives/4660」
+        width: 100vw;
+        margin: 0 calc(50% - 50vw);
+        ul {
+            @include base__wrapper();
+            display: flex;
+            li {
+                padding: 15px 30px 15px 0px;
+                font-size: 14px;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.contents {
+    @include base__wrapper();
+    padding: 200px 0;
+    .contents__pickup {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 80px;
+        .pickup__article {
+            width: 32%;
+            img {
+                max-width: 100%;
+            }
+            .article__txt {
+                margin: 10px 0 15px 0;
+                font-size: 16px;
+            }
+            .article__readmore {
+                @include article__readmore();
+            }
+        }
+    }
+    .contents__main {
+        display: flex;
+        justify-content: space-between;
+        .main__main {
+            width: 65%;
+            .main__article {
+                .article__ttl {
+                    font-size: 24px;
+                    font-weight: 600;
+                    margin: 15px 0;
+                }
+                .article__itembox--created-category {
+                    display: flex;
+                    font-size: 14px;
+                    margin-bottom: 15px;
+                    .article__created {
+                        margin-right: 30px
+                    }
+                }
+                img {
+                    width: 100%;
+                }
+                .article__txt {
+                    font-size: 16px;
+                    margin: 15px;
+                }
+                .article__readmore {
+                    @include article__readmore();
+                }
+            }
+        }
+        .main__aside {
+            @mixin aside__ttl {
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 30px;
+            }
+            @mixin aside__bottom-margin {
+                margin-bottom: 50px;
+            }
+            width: 32%;
+            .aside__about {
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                @include aside__bottom-margin();
+                img {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    margin-bottom: 30px;
+                }
+                .about__myname {
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 30px;
+                }
+                .about__txt {
+                    font-size: 14px;
+                }
+            }
+            .aside__ranking {
+                @include aside__bottom-margin();
+                .ranking__ttl {
+                    @include aside__ttl();
+                }
+                .ranking__article {
+                    margin-bottom: 30px;
+                    img {
+                        width: 100%;
+                    }
+                    .article__ttl {
+                        font-size: 14px;
+                        margin: 15px 0;
+                    }
+                }
+            }
+            .aside__archive {
+                .archive__ttl {
+                    @include aside__ttl();
+                }
+                ul {
+                    border-bottom: solid 1px #777;
+                    li {
+                        font-size: 14px;
+                        border-top: solid 1px #777;
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: #f7f7f7;
+    .footer__contents {
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 0 70px 0;
+        @include base__wrapper();
+        .footer__about {
+            width: 30%;
+            .about__ttl {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 30px;
+            }
+            .about__txt {
+                font-size: 14px
+            }
+            .about__menu {
+                margin: 20px 0;
+                li {
+                    position: relative;
+                    font-size: 14px;
+                    margin: 5px 0;
+                    padding-left: 12px;
+                    a:before {
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 6px;
+                        border-color: transparent transparent transparent #333;
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        margin-top: -6px;
+                    }
+                }
+            }
+        }
+        .footer__menu {
+            @extend .footer__about;
+            .menu__ttl {
+                @extend .about__ttl;
+            }
+            .menu__nav {
+                ul {
+                    border-bottom: solid 1px #777;
+                    li {
+                        font-size: 14px;
+                        border-top: solid 1px #777;
+                        padding: 20px 10px;
+                    }
+                }
+            }
+        }
+        .footer__twitter {
+            @extend .footer__about;
+            .twitter__ttl {
+                @extend .about__ttl;
+            }
+        }
+    }
+    .footer__copyright {
+        @include base__wrapper();
+        text-align: center;
+        font-size: 12px;
+        padding: 10px 0;
+    }
+}
+
+@media screen and (max-width:765px) {
+    .contents {
+        .contents__pickup {
+            display: block;
+            .pickup__article {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+        .contents__main {
+            display: block;
+            .main__main {
+                width: 100%;
+                margin-bottom: 80px;
+                .main__article {
+                    padding-bottom: 30px;
+                }
+            }
+            .main__aside {
+                width: 100%;
+                .aside__about {
+                    img {
+                        width: 300px;
+                        height: 300px;
+                    }
+                }
+            }
+        }
+    }
+    .footer {
+        background-color: #f7f7f7;
+        .footer__contents {
+            display: block;
+            .footer__about {
+                width: 100%;
+                padding-bottom: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:599px) {
+    .header {
+        position: initial;
+        .header__ttl {
+            text-align: center;
+        }
+        .header__nav {
+            position: fixed;
+            bottom: 0;
+            z-index: 10;
+            ul {
+                justify-content: space-between;
+                li {
+                    padding: 30px 0;
+                }
+            }
+        }
+    }
+    .contents {
+        padding: 0;
+        .contents__main {
+            .main__aside {
+                .aside__about {
+                    img {
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+    }
+    .footer {
+        .footer__copyright {
+            padding-bottom: 90px;
+        }
+    }
+}
